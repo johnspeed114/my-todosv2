@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
+import React, { useState } from 'react';
+import HeadingArea from './components/HeadingArea';
+import TodoList from './components/TodoList';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [ newTodo, setNewTodo ] = useState('');
+	const [ todoItems, setTodoItems ] = useState([]);
+	//want to setup todos with console the new submitted to do item
+
+	const handleSubmit = (theEvent) => {
+		theEvent.preventDefault();
+
+		console.log(newTodo);
+		setTodoItems([ ...todoItems, {name: newTodo, completed: false, id: uuidv4()}]);
+		console.log(todoItems);
+		setNewTodo('');
+	};
+
+	const handleRemove = (id) => {
+		console.log(id);
+		const newList = todoItems.filter((item) => item.id !== id);
+		setTodoItems(newList);
+	};
+
+  const handleComplete = (id) => {
+    const booleanChange = todoItems.map(
+      (item) => {
+        if (item.id === id) {
+          item.completed = !item.completed
+        } 
+        return item;
+      })
+    setTodoItems(booleanChange);
+
+  }
+
+	return (
+		<div className="App">
+      <HeadingArea handleSubmit={handleSubmit} setNewTodo={setNewTodo} newTodo={newTodo}/>
+      <TodoList todoItems={todoItems} handleRemove={handleRemove} handleComplete={handleComplete}/>
+		</div>
+	);
 }
 
 export default App;
