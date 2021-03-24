@@ -1,0 +1,12 @@
+[x] Should have a crossout when checked completed
+    [x] Need to manipulate the prop in Todo.name in li of Todo.js
+    CURRENT POSSIBLE SOLUTION: Can use CSS class name target {text-decoration: line-through}
+    -maybe look for manipulate states of passed props through css?
+    -first)Can onclick event have two functions? or should 
+    i add the toggle class feature into handleComplete
+    CONCLUSION: I created a classname for each li(which i acutally don't need the id for key) set it as a condition to add strikethrough style class in or not on the condition if item.completed was true or false
+
+[] Double click on item, you can edit the item
+    [] Double click trigger the edit feature
+    [] need to probably add item.id to each of the edit features 
+    -This would be kinda like the delete function
