@@ -7,6 +7,12 @@
     CONCLUSION: I created a classname for each li(which i acutally don't need the id for key) set it as a condition to add strikethrough style class in or not on the condition if item.completed was true or false
 
 [] Double click on item, you can edit the item
-    [] Double click trigger the edit feature
+    [x] Double click trigger the edit feature
     [] need to probably add item.id to each of the edit features 
+    [] add to change the state of todoItems[i] so need a new state for this
     -This would be kinda like the delete function
+    -Issue Log #1: having problem with returning would run the function before the click,
+     solution(i don't call the function like eventlistener so need that animous functino)
+
+     //<form onSubmit={handleEdit}></form>
+     [] last how do i change the input edit on the same line as checkbox and delete?

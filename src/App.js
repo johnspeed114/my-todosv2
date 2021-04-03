@@ -10,11 +10,10 @@ function App() {
 	//want to setup todos with console the new submitted to do item
 
 	const handleSubmit = (theEvent) => {
-		theEvent.preventDefault();
+		theEvent.preventDefault(); //I forgot what is this again for?
 
-		console.log(newTodo);
-		setTodoItems([ ...todoItems, {name: newTodo, completed: false, id: uuidv4()}]);
-		console.log(todoItems);
+		setTodoItems([ ...todoItems, { name: newTodo, completed: false, toggle: true, id: uuidv4() } ]);
+
 		setNewTodo('');
 	};
 
@@ -24,22 +23,47 @@ function App() {
 		setTodoItems(newList);
 	};
 
-  const handleComplete = (id) => {
-    const booleanChange = todoItems.map(
-      (item) => {
-        if (item.id === id) {
-          item.completed = !item.completed
-        } 
-        return item;
-      })
-    setTodoItems(booleanChange);
+	const handleEdit = (id, newTodoName) => {
+		const editedMap = todoItems.map((item) => {
+			if (item.id === id) {
+				item.name = newTodoName;
+				item.toggle = !item.toggle;
+			}
+			return item;
+		});
+		setTodoItems(editedMap);
+	};
 
-  }
+	const handleComplete = (id) => {
+		const booleanChange = todoItems.map((item) => {
+			if (item.id === id) {
+				item.completed = !item.completed;
+			}
+			return item;
+		});
+		setTodoItems(booleanChange);
+	};
+
+	const toggleInput = (id) => {
+		const changeToggle = todoItems.map((item) => {
+			if (item.id === id) {
+				item.toggle = !item.toggle;
+			}
+			return item;
+		});
+		setTodoItems(changeToggle);
+	};
 
 	return (
 		<div className="App">
-      <HeadingArea handleSubmit={handleSubmit} setNewTodo={setNewTodo} newTodo={newTodo}/>
-      <TodoList todoItems={todoItems} handleRemove={handleRemove} handleComplete={handleComplete}/>
+			<HeadingArea handleSubmit={handleSubmit} setNewTodo={setNewTodo} newTodo={newTodo} />
+			<TodoList
+				todoItems={todoItems}
+				handleRemove={handleRemove}
+				handleComplete={handleComplete}
+				handleEdit={handleEdit}
+				toggleInput={toggleInput}
+			/>
 		</div>
 	);
 }

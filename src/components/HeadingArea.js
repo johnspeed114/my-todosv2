@@ -12,7 +12,7 @@ function HeadingArea({handleSubmit, setNewTodo, newTodo}) {
                 value={newTodo}
                 placeholder="Enter Todo Item"
             />
-            </form>
+        </form>
     </header>
     )
 }
